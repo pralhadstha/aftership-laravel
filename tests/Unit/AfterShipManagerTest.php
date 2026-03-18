@@ -1,0 +1,121 @@
+<?php
+
+declare(strict_types=1);
+
+namespace AfterShip\Tests\Unit;
+
+use AfterShip\AfterShipManager;
+use AfterShip\Client\AfterShipClient;
+use AfterShip\Contracts\ClientInterface;
+use AfterShip\Drivers\FakeDriver;
+use AfterShip\Exceptions\InvalidConfigurationException;
+use PHPUnit\Framework\TestCase;
+
+final class AfterShipManagerTest extends TestCase
+{
+    public function test_it_creates_fake_client(): void
+    {
+        $manager = new AfterShipManager([
+            'api_key' => 'test-key',
+            'driver' => 'fake',
+        ]);
+
+        $client = $manager->client();
+
+        $this->assertInstanceOf(ClientInterface::class, $client);
+        $this->assertInstanceOf(AfterShipClient::class, $client);
+        $this->assertInstanceOf(FakeDriver::class, $client->driver());
+    }
+
+    public function test_it_creates_sdk_client(): void
+    {
+        $manager = new AfterShipManager([
+            'api_key' => 'test-key',
+            'driver' => 'sdk',
+            'base_url' => 'https://api.aftership.com/v4',
+            'timeout' => 30,
+        ]);
+
+        $client = $manager->client();
+
+        $this->assertInstanceOf(ClientInterface::class, $client);
+    }
+
+    public function test_it_throws_on_invalid_driver(): void
+    {
+        $manager = new AfterShipManager([
+            'api_key' => 'test-key',
+            'driver' => 'invalid',
+        ]);
+
+        $this->expectException(InvalidConfigurationException::class);
+        $this->expectExceptionMessage('Invalid AfterShip driver [invalid]');
+
+        $manager->client();
+    }
+
+    public function test_it_throws_on_missing_api_key(): void
+    {
+        $manager = new AfterShipManager([
+            'api_key' => '',
+            'driver' => 'sdk',
+        ]);
+
+        $this->expectException(InvalidConfigurationException::class);
+        $this->expectExceptionMessage('Missing required AfterShip configuration: [api_key]');
+
+        $manager->client();
+    }
+
+    public function test_it_returns_default_driver(): void
+    {
+        $manager = new AfterShipManager(['driver' => 'sdk']);
+
+        $this->assertSame('sdk', $manager->getDefaultDriver());
+    }
+
+    public function test_it_defaults_to_sdk_driver(): void
+    {
+        $manager = new AfterShipManager([]);
+
+        $this->assertSame('sdk', $manager->getDefaultDriver());
+    }
+
+    public function test_it_caches_client_instances(): void
+    {
+        $manager = new AfterShipManager([
+            'api_key' => 'test-key',
+            'driver' => 'fake',
+        ]);
+
+        $client1 = $manager->client();
+        $client2 = $manager->client();
+
+        $this->assertSame($client1, $client2);
+    }
+
+    public function test_it_creates_different_clients_for_different_drivers(): void
+    {
+        $manager = new AfterShipManager([
+            'api_key' => 'test-key',
+            'driver' => 'fake',
+        ]);
+
+        $fakeClient = $manager->client('fake');
+        $sdkClient = $manager->client('sdk');
+
+        $this->assertNotSame($fakeClient, $sdkClient);
+    }
+
+    public function test_http_driver_throws_without_http_factory(): void
+    {
+        $manager = new AfterShipManager([
+            'api_key' => 'test-key',
+            'driver' => 'http',
+        ]);
+
+        $this->expectException(InvalidConfigurationException::class);
+
+        $manager->client();
+    }
+}
