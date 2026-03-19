@@ -9,6 +9,7 @@ use AfterShip\Exceptions\AuthenticationException;
 use AfterShip\Exceptions\RateLimitException;
 use AfterShip\Support\ExceptionMapper;
 use PHPUnit\Framework\TestCase;
+use Tracking\Exception\AfterShipError;
 
 final class ExceptionMapperTest extends TestCase
 {
@@ -50,5 +51,33 @@ final class ExceptionMapperTest extends TestCase
 
         $this->assertInstanceOf(ApiException::class, $exception);
         $this->assertSame(400, $exception->getStatusCode());
+    }
+
+    public function test_it_maps_sdk_401_to_authentication_exception(): void
+    {
+        $sdkError = new AfterShipError('Unauthorized', 401, 401);
+        $exception = ExceptionMapper::fromSdkException($sdkError);
+
+        $this->assertInstanceOf(AuthenticationException::class, $exception);
+        $this->assertSame(401, $exception->getStatusCode());
+    }
+
+    public function test_it_maps_sdk_429_to_rate_limit_exception(): void
+    {
+        $sdkError = new AfterShipError('Too Many Requests', 429, 429);
+        $exception = ExceptionMapper::fromSdkException($sdkError);
+
+        $this->assertInstanceOf(RateLimitException::class, $exception);
+        $this->assertSame(429, $exception->getStatusCode());
+    }
+
+    public function test_it_maps_sdk_other_errors_to_api_exception(): void
+    {
+        $sdkError = new AfterShipError('Bad Request', 4001, 400);
+        $exception = ExceptionMapper::fromSdkException($sdkError);
+
+        $this->assertInstanceOf(ApiException::class, $exception);
+        $this->assertSame(400, $exception->getStatusCode());
+        $this->assertSame('Bad Request', $exception->getMessage());
     }
 }

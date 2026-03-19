@@ -26,9 +26,13 @@
         "guzzlehttp/guzzle": "^7.0"
     },
     "require-dev": {
-        "orchestra/testbench": "^8.0|^9.0|^10.0",
+        "aftership/tracking-sdk": "^15.0",
+        "orchestra/testbench": "^9.0|^10.0",
         "phpunit/phpunit": "^10.0|^11.0",
         "mockery/mockery": "^1.6"
+    },
+    "suggest": {
+        "aftership/tracking-sdk": "Required to use the SDK driver (^15.0)"
     },
     "autoload": {
         "psr-4": {

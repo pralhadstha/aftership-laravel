@@ -33,7 +33,7 @@ return [
     | The base URL for the AfterShip Tracking API.
     |
     */
-    'base_url' => env('AFTERSHIP_BASE_URL', 'https://api.aftership.com/v4'),
+    'base_url' => env('AFTERSHIP_BASE_URL', 'https://api.aftership.com'),
 
     /*
     |--------------------------------------------------------------------------

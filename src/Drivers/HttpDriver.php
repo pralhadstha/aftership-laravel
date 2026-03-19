@@ -21,7 +21,7 @@ final class HttpDriver implements DriverInterface
         private readonly int $timeout,
     ) {
         $this->http = $this->httpFactory
-            ->baseUrl($this->baseUrl)
+            ->baseUrl(rtrim($this->baseUrl, '/') . '/v4')
             ->timeout($this->timeout)
             ->withHeaders([
                 'as-api-key' => $this->apiKey,

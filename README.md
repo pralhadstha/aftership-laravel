@@ -34,7 +34,7 @@ Full configuration options in `config/aftership.php`:
 return [
     'api_key'        => env('AFTERSHIP_API_KEY', ''),
     'driver'         => env('AFTERSHIP_DRIVER', 'sdk'),   // sdk, http
-    'base_url'       => env('AFTERSHIP_BASE_URL', 'https://api.aftership.com/v4'),
+    'base_url'       => env('AFTERSHIP_BASE_URL', 'https://api.aftership.com'),
     'timeout'        => env('AFTERSHIP_TIMEOUT', 30),
     'webhook_secret' => env('AFTERSHIP_WEBHOOK_SECRET', ''),
 ];
@@ -42,10 +42,18 @@ return [
 
 ### Drivers
 
-| Driver | Description |
-|--------|-------------|
-| `sdk`  | Uses Guzzle HTTP client directly (default) |
-| `http` | Uses Laravel's HTTP client (`Http::`) |
+| Driver | Description | Extra dependency |
+|--------|-------------|-----------------|
+| `sdk`  | Wraps the official [AfterShip Tracking SDK](https://github.com/AfterShip/tracking-sdk-php) (default) | `aftership/tracking-sdk` |
+| `http` | Uses Laravel's HTTP client (`Http::`) directly | None |
+
+If you choose the `sdk` driver, install the official SDK:
+
+```bash
+composer require aftership/tracking-sdk
+```
+
+The `http` driver works out of the box with no extra dependencies.
 
 ## Usage
 

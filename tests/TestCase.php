@@ -38,7 +38,7 @@ abstract class TestCase extends OrchestraTestCase
     {
         $app['config']->set('aftership.api_key', 'test-api-key');
         $app['config']->set('aftership.driver', 'fake');
-        $app['config']->set('aftership.base_url', 'https://api.aftership.com/v4');
+        $app['config']->set('aftership.base_url', 'https://api.aftership.com');
         $app['config']->set('aftership.timeout', 30);
         $app['config']->set('aftership.webhook_secret', 'test-webhook-secret');
     }

@@ -5,11 +5,19 @@ declare(strict_types=1);
 namespace AfterShip\Drivers;
 
 use AfterShip\Contracts\DriverInterface;
+use AfterShip\Exceptions\InvalidConfigurationException;
 use AfterShip\Support\ExceptionMapper;
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception\ClientException;
-use GuzzleHttp\Exception\GuzzleException;
-use Psr\Http\Message\ResponseInterface;
+use Tracking\Client;
+use Tracking\Config;
+use Tracking\Exception\AfterShipError;
+use Tracking\Model\CreateTrackingRequest;
+use Tracking\Model\DetectCourierRequest;
+use Tracking\Model\EstimatedDeliveryDateRequest;
+use Tracking\Model\GetCouriersQuery;
+use Tracking\Model\GetTrackingsQuery;
+use Tracking\Model\MarkTrackingCompletedByIdRequest;
+use Tracking\Model\MarkTrackingCompletedByIdRequestReason;
+use Tracking\Model\UpdateTrackingByIdRequest;
 
 final class SdkDriver implements DriverInterface
 {
@@ -20,115 +28,190 @@ final class SdkDriver implements DriverInterface
         private readonly string $baseUrl,
         private readonly int $timeout,
     ) {
+        if (!class_exists(Client::class)) {
+            throw new InvalidConfigurationException(
+                'The AfterShip SDK driver requires the "aftership/tracking-sdk" package. '
+                . 'Install it with: composer require aftership/tracking-sdk'
+            );
+        }
+
         $this->client = new Client([
-            'base_uri' => rtrim($this->baseUrl, '/') . '/',
-            'timeout' => $this->timeout,
-            'headers' => [
-                'as-api-key' => $this->apiKey,
-                'Content-Type' => 'application/json',
-                'Accept' => 'application/json',
-            ],
+            'apiKey' => $this->apiKey,
+            'authenticationType' => Config::AUTHENTICATION_TYPE_API_KEY,
+            'domain' => rtrim($this->baseUrl, '/'),
+            'timeout' => $this->timeout * 1000, // SDK uses milliseconds
         ]);
     }
 
     public function createTracking(array $data): array
     {
-        return $this->request('POST', 'trackings', ['tracking' => $data]);
+        try {
+            $request = CreateTrackingRequest::fromArray($data, CreateTrackingRequest::class);
+            $response = $this->client->tracking->createTracking($request);
+            $tracking = $response->getData();
+
+            return ['data' => ['tracking' => $tracking->toArray()]];
+        } catch (AfterShipError $e) {
+            throw ExceptionMapper::fromSdkException($e);
+        }
     }
 
     public function getTracking(string $id): array
     {
-        return $this->request('GET', "trackings/{$id}");
+        try {
+            $response = $this->client->tracking->getTrackingById($id);
+            $tracking = $response->getData();
+
+            return ['data' => ['tracking' => $tracking->toArray()]];
+        } catch (AfterShipError $e) {
+            throw ExceptionMapper::fromSdkException($e);
+        }
     }
 
     public function listTrackings(array $query = []): array
     {
-        return $this->request('GET', 'trackings', query: $query);
+        try {
+            $sdkQuery = null;
+            if (!empty($query)) {
+                $sdkQuery = new GetTrackingsQuery();
+                foreach ($query as $key => $value) {
+                    $setter = 'set' . str_replace('_', '', ucwords($key, '_'));
+                    if (method_exists($sdkQuery, $setter)) {
+                        $sdkQuery->{$setter}((string) $value);
+                    }
+                }
+            }
+
+            $response = $this->client->tracking->getTrackings($sdkQuery);
+            $data = $response->getData();
+
+            $trackings = [];
+            if ($data->trackings !== null) {
+                foreach ($data->trackings as $tracking) {
+                    $trackings[] = $tracking->toArray();
+                }
+            }
+
+            $result = [
+                'trackings' => $trackings,
+                'count' => $data->pagination?->total ?? count($trackings),
+            ];
+
+            return ['data' => $result];
+        } catch (AfterShipError $e) {
+            throw ExceptionMapper::fromSdkException($e);
+        }
     }
 
     public function updateTracking(string $id, array $data): array
     {
-        return $this->request('PUT', "trackings/{$id}", ['tracking' => $data]);
+        try {
+            $request = UpdateTrackingByIdRequest::fromArray($data, UpdateTrackingByIdRequest::class);
+            $response = $this->client->tracking->updateTrackingById($id, $request);
+            $tracking = $response->getData();
+
+            return ['data' => ['tracking' => $tracking->toArray()]];
+        } catch (AfterShipError $e) {
+            throw ExceptionMapper::fromSdkException($e);
+        }
     }
 
     public function deleteTracking(string $id): array
     {
-        return $this->request('DELETE', "trackings/{$id}");
+        try {
+            $response = $this->client->tracking->deleteTrackingById($id);
+            $tracking = $response->getData();
+
+            return ['data' => ['tracking' => $tracking->toArray()]];
+        } catch (AfterShipError $e) {
+            throw ExceptionMapper::fromSdkException($e);
+        }
     }
 
     public function markTrackingCompleted(string $id, string $reason = 'DELIVERED'): array
     {
-        return $this->request('POST', "trackings/{$id}/mark-as-completed", [
-            'reason' => $reason,
-        ]);
+        try {
+            $request = new MarkTrackingCompletedByIdRequest();
+            $request->reason = MarkTrackingCompletedByIdRequestReason::from($reason);
+
+            $response = $this->client->tracking->markTrackingCompletedById($id, $request);
+            $tracking = $response->getData();
+
+            return ['data' => ['tracking' => $tracking->toArray()]];
+        } catch (AfterShipError $e) {
+            throw ExceptionMapper::fromSdkException($e);
+        }
     }
 
     public function listCouriers(): array
     {
-        return $this->request('GET', 'couriers/all');
+        try {
+            $response = $this->client->courier->getCouriers();
+            $data = $response->getData();
+
+            $couriers = [];
+            if ($data->couriers !== null) {
+                foreach ($data->couriers as $courier) {
+                    $couriers[] = $courier->toArray();
+                }
+            }
+
+            return ['data' => ['couriers' => $couriers]];
+        } catch (AfterShipError $e) {
+            throw ExceptionMapper::fromSdkException($e);
+        }
     }
 
     public function detectCourier(array $data): array
     {
-        return $this->request('POST', 'couriers/detect', ['tracking' => $data]);
+        try {
+            $request = DetectCourierRequest::fromArray($data, DetectCourierRequest::class);
+            $response = $this->client->courier->detectCourier($request);
+            $data = $response->getData();
+
+            $couriers = [];
+            if ($data->couriers !== null) {
+                foreach ($data->couriers as $courier) {
+                    $couriers[] = $courier->toArray();
+                }
+            }
+
+            return ['data' => ['couriers' => $couriers]];
+        } catch (AfterShipError $e) {
+            throw ExceptionMapper::fromSdkException($e);
+        }
     }
 
     public function getCourier(string $slug): array
     {
-        return $this->request('GET', "couriers/{$slug}");
+        try {
+            $query = new GetCouriersQuery();
+            $query->setSlug($slug);
+
+            $response = $this->client->courier->getCouriers($query);
+            $data = $response->getData();
+
+            $courierData = [];
+            if ($data->couriers !== null && count($data->couriers) > 0) {
+                $courierData = $data->couriers[0]->toArray();
+            }
+
+            return ['data' => ['courier' => $courierData]];
+        } catch (AfterShipError $e) {
+            throw ExceptionMapper::fromSdkException($e);
+        }
     }
 
     public function estimateDeliveryDate(array $data): array
     {
-        return $this->request('POST', 'estimated-delivery-date', $data);
-    }
-
-    /**
-     * @param array<string, mixed> $body
-     * @param array<string, mixed> $query
-     * @return array<string, mixed>
-     */
-    private function request(string $method, string $uri, array $body = [], array $query = []): array
-    {
-        $options = [];
-
-        if (!empty($body)) {
-            $options['json'] = $body;
-        }
-
-        if (!empty($query)) {
-            $options['query'] = $query;
-        }
-
         try {
-            $response = $this->client->request($method, $uri, $options);
+            $request = EstimatedDeliveryDateRequest::fromArray($data, EstimatedDeliveryDateRequest::class);
+            $response = $this->client->estimated_delivery_date->predict($request);
+            $estimate = $response->getData();
 
-            return $this->decodeResponse($response);
-        } catch (ClientException $e) {
-            $response = $e->getResponse();
-            $statusCode = $response->getStatusCode();
-            $responseBody = $this->decodeResponse($response);
-
-            throw ExceptionMapper::fromHttpResponse($statusCode, $responseBody);
-        } catch (GuzzleException $e) {
-            throw new \AfterShip\Exceptions\ApiException(
-                message: 'AfterShip API request failed: ' . $e->getMessage(),
-                code: (int) $e->getCode(),
-                previous: $e,
-            );
+            return ['data' => ['estimated_delivery_date' => $estimate->toArray()]];
+        } catch (AfterShipError $e) {
+            throw ExceptionMapper::fromSdkException($e);
         }
-    }
-
-    /**
-     * @return array<string, mixed>
-     */
-    private function decodeResponse(ResponseInterface $response): array
-    {
-        $body = (string) $response->getBody();
-
-        /** @var array<string, mixed> $decoded */
-        $decoded = json_decode($body, true);
-
-        return $decoded ?? [];
     }
 }

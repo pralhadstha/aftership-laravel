@@ -8,6 +8,7 @@ use AfterShip\AfterShipManager;
 use AfterShip\Client\AfterShipClient;
 use AfterShip\Contracts\ClientInterface;
 use AfterShip\Drivers\FakeDriver;
+use AfterShip\Drivers\SdkDriver;
 use AfterShip\Exceptions\InvalidConfigurationException;
 use PHPUnit\Framework\TestCase;
 
@@ -32,13 +33,14 @@ final class AfterShipManagerTest extends TestCase
         $manager = new AfterShipManager([
             'api_key' => 'test-key',
             'driver' => 'sdk',
-            'base_url' => 'https://api.aftership.com/v4',
+            'base_url' => 'https://api.aftership.com',
             'timeout' => 30,
         ]);
 
         $client = $manager->client();
 
         $this->assertInstanceOf(ClientInterface::class, $client);
+        $this->assertInstanceOf(SdkDriver::class, $client->driver());
     }
 
     public function test_it_throws_on_invalid_driver(): void

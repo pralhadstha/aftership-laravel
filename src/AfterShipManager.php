@@ -114,7 +114,7 @@ final class AfterShipManager
 
     private function getBaseUrl(): string
     {
-        return $this->config['base_url'] ?? 'https://api.aftership.com/v4';
+        return $this->config['base_url'] ?? 'https://api.aftership.com';
     }
 
     private function getTimeout(): int
