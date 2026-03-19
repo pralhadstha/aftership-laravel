@@ -19,9 +19,10 @@ final class HttpDriver implements DriverInterface
         private readonly string $apiKey,
         private readonly string $baseUrl,
         private readonly int $timeout,
+        private readonly string $apiVersion = 'tracking/2026-01',
     ) {
         $this->http = $this->httpFactory
-            ->baseUrl(rtrim($this->baseUrl, '/') . '/v4')
+            ->baseUrl(rtrim($this->baseUrl, '/') . '/' . ltrim($this->apiVersion, '/'))
             ->timeout($this->timeout)
             ->withHeaders([
                 'as-api-key' => $this->apiKey,
@@ -32,7 +33,7 @@ final class HttpDriver implements DriverInterface
 
     public function createTracking(array $data): array
     {
-        return $this->request('POST', '/trackings', ['tracking' => $data]);
+        return $this->request('POST', '/trackings', $data);
     }
 
     public function getTracking(string $id): array
@@ -47,7 +48,7 @@ final class HttpDriver implements DriverInterface
 
     public function updateTracking(string $id, array $data): array
     {
-        return $this->request('PUT', "/trackings/{$id}", ['tracking' => $data]);
+        return $this->request('PUT', "/trackings/{$id}", $data);
     }
 
     public function deleteTracking(string $id): array
@@ -64,7 +65,7 @@ final class HttpDriver implements DriverInterface
 
     public function listCouriers(): array
     {
-        return $this->request('GET', '/couriers/all');
+        return $this->request('GET', '/couriers');
     }
 
     public function detectCourier(array $data): array
@@ -74,12 +75,12 @@ final class HttpDriver implements DriverInterface
 
     public function getCourier(string $slug): array
     {
-        return $this->request('GET', "/couriers/{$slug}");
+        return $this->request('GET', '/couriers', query: ['slug' => $slug]);
     }
 
     public function estimateDeliveryDate(array $data): array
     {
-        return $this->request('POST', '/estimated-delivery-date', $data);
+        return $this->request('POST', '/estimated-delivery-date/predict', $data);
     }
 
     /**

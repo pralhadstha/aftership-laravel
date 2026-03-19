@@ -93,6 +93,7 @@ final class AfterShipManager
             apiKey: $this->getApiKey(),
             baseUrl: $this->getBaseUrl(),
             timeout: $this->getTimeout(),
+            apiVersion: $this->getApiVersion(),
         );
     }
 
@@ -120,5 +121,10 @@ final class AfterShipManager
     private function getTimeout(): int
     {
         return (int) ($this->config['timeout'] ?? 30);
+    }
+
+    private function getApiVersion(): string
+    {
+        return $this->config['api_version'] ?? 'tracking/2026-01';
     }
 }

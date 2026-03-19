@@ -49,6 +49,7 @@ return [
     'api_key'        => env('AFTERSHIP_API_KEY', ''),
     'driver'         => env('AFTERSHIP_DRIVER', 'sdk'),   // sdk, http
     'base_url'       => env('AFTERSHIP_BASE_URL', 'https://api.aftership.com'),
+    'api_version'    => env('AFTERSHIP_API_VERSION', 'tracking/2026-01'), // HTTP driver only
     'timeout'        => env('AFTERSHIP_TIMEOUT', 30),
     'webhook_secret' => env('AFTERSHIP_WEBHOOK_SECRET', ''),
 ];
