@@ -13,7 +13,21 @@ A modern Laravel wrapper for the [AfterShip Tracking API](https://www.aftership.
 composer require pralhadstha/aftership-laravel
 ```
 
-The package auto-discovers its service provider and facade. To publish the configuration:
+Then run the interactive installer:
+
+```bash
+php artisan aftership:install
+```
+
+The installer will guide you through:
+- Selecting a driver (`sdk` or `http`)
+- Installing the AfterShip SDK (if the `sdk` driver is selected)
+- Configuring your API key
+- Publishing the config file
+
+### Manual Setup
+
+If you prefer to configure manually, publish the config and set your `.env` values:
 
 ```bash
 php artisan vendor:publish --tag=aftership-config

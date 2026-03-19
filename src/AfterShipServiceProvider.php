@@ -5,11 +5,14 @@ declare(strict_types=1);
 namespace AfterShip;
 
 use AfterShip\Client\AfterShipClient;
+use AfterShip\Console\InstallCommand;
 use AfterShip\Contracts\ClientInterface;
 use AfterShip\Contracts\DriverInterface;
 use AfterShip\Webhooks\WebhookHandler;
 use Illuminate\Http\Client\Factory as HttpFactory;
 use Illuminate\Support\ServiceProvider;
+
+use function Laravel\Prompts\info;
 
 final class AfterShipServiceProvider extends ServiceProvider
 {
@@ -48,9 +51,17 @@ final class AfterShipServiceProvider extends ServiceProvider
     public function boot(): void
     {
         if ($this->app->runningInConsole()) {
+            $this->commands([
+                InstallCommand::class,
+            ]);
+
             $this->publishes([
                 __DIR__ . '/../config/aftership.php' => config_path('aftership.php'),
             ], 'aftership-config');
+
+            if (!file_exists(config_path('aftership.php'))) {
+                info('AfterShip: Run [php artisan aftership:install] to set up the package.');
+            }
         }
     }
 
