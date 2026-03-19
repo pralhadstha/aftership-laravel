@@ -61,7 +61,7 @@ return [
 | `sdk`  | Wraps the official [AfterShip Tracking SDK](https://github.com/AfterShip/tracking-sdk-php) (default) | `aftership/tracking-sdk` |
 | `http` | Uses Laravel's HTTP client (`Http::`) directly | None |
 
-If you choose the `sdk` driver, install the official SDK:
+If you choose the `sdk` driver, the `aftership:install` command will install the SDK for you automatically. For manual setup, run:
 
 ```bash
 composer require aftership/tracking-sdk
