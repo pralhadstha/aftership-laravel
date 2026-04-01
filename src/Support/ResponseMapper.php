@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace AfterShip\Support;
+namespace OmniCargo\Aftership\Laravel\Support;
 
-use AfterShip\DTO\CourierData;
-use AfterShip\DTO\DeliveryEstimateData;
-use AfterShip\DTO\TrackingCollection;
-use AfterShip\DTO\TrackingData;
+use OmniCargo\Aftership\Laravel\DTO\CourierData;
+use OmniCargo\Aftership\Laravel\DTO\DeliveryEstimateData;
+use OmniCargo\Aftership\Laravel\DTO\TrackingCollection;
+use OmniCargo\Aftership\Laravel\DTO\TrackingData;
 
 final class ResponseMapper
 {

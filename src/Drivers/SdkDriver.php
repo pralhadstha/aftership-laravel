@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace AfterShip\Drivers;
+namespace OmniCargo\Aftership\Laravel\Drivers;
 
-use AfterShip\Contracts\DriverInterface;
-use AfterShip\Exceptions\InvalidConfigurationException;
-use AfterShip\Support\ExceptionMapper;
+use OmniCargo\Aftership\Laravel\Contracts\DriverInterface;
+use OmniCargo\Aftership\Laravel\Exceptions\InvalidConfigurationException;
+use OmniCargo\Aftership\Laravel\Support\ExceptionMapper;
 use Tracking\Client;
 use Tracking\Config;
 use Tracking\Exception\AfterShipError;

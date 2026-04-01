@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace AfterShip\Tests\Unit\Services;
+namespace OmniCargo\Aftership\Laravel\Tests\Unit\Services;
 
-use AfterShip\Contracts\DriverInterface;
-use AfterShip\DTO\TrackingCollection;
-use AfterShip\DTO\TrackingData;
-use AfterShip\Services\TrackingService;
-use AfterShip\Support\ResponseMapper;
+use OmniCargo\Aftership\Laravel\Contracts\DriverInterface;
+use OmniCargo\Aftership\Laravel\DTO\TrackingCollection;
+use OmniCargo\Aftership\Laravel\DTO\TrackingData;
+use OmniCargo\Aftership\Laravel\Services\TrackingService;
+use OmniCargo\Aftership\Laravel\Support\ResponseMapper;
 use PHPUnit\Framework\TestCase;
 
 final class TrackingServiceTest extends TestCase

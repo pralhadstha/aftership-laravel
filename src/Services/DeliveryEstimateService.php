@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace AfterShip\Services;
+namespace OmniCargo\Aftership\Laravel\Services;
 
-use AfterShip\Contracts\DriverInterface;
-use AfterShip\DTO\DeliveryEstimateData;
-use AfterShip\Support\ResponseMapper;
+use OmniCargo\Aftership\Laravel\Contracts\DriverInterface;
+use OmniCargo\Aftership\Laravel\DTO\DeliveryEstimateData;
+use OmniCargo\Aftership\Laravel\Support\ResponseMapper;
 
 final class DeliveryEstimateService
 {

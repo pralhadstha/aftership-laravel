@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace AfterShip\Tests\Unit\Exceptions;
+namespace OmniCargo\Aftership\Laravel\Tests\Unit\Exceptions;
 
-use AfterShip\Exceptions\AfterShipException;
-use AfterShip\Exceptions\ApiException;
-use AfterShip\Exceptions\AuthenticationException;
-use AfterShip\Exceptions\InvalidConfigurationException;
-use AfterShip\Exceptions\RateLimitException;
+use OmniCargo\Aftership\Laravel\Exceptions\AfterShipException;
+use OmniCargo\Aftership\Laravel\Exceptions\ApiException;
+use OmniCargo\Aftership\Laravel\Exceptions\AuthenticationException;
+use OmniCargo\Aftership\Laravel\Exceptions\InvalidConfigurationException;
+use OmniCargo\Aftership\Laravel\Exceptions\RateLimitException;
 use PHPUnit\Framework\TestCase;
 
 final class ExceptionTest extends TestCase

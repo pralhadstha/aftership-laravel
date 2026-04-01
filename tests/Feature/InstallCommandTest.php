@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace AfterShip\Tests\Feature;
+namespace OmniCargo\Aftership\Laravel\Tests\Feature;
 
-use AfterShip\Console\InstallCommand;
-use AfterShip\Tests\TestCase;
+use OmniCargo\Aftership\Laravel\Console\InstallCommand;
+use OmniCargo\Aftership\Laravel\Tests\TestCase;
 
 final class InstallCommandTest extends TestCase
 {

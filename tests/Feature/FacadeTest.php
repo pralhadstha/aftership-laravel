@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace AfterShip\Tests\Feature;
+namespace OmniCargo\Aftership\Laravel\Tests\Feature;
 
-use AfterShip\DTO\CourierData;
-use AfterShip\DTO\DeliveryEstimateData;
-use AfterShip\DTO\TrackingCollection;
-use AfterShip\DTO\TrackingData;
-use AfterShip\Facades\AfterShip;
-use AfterShip\Services\CourierService;
-use AfterShip\Services\DeliveryEstimateService;
-use AfterShip\Services\TrackingService;
-use AfterShip\Tests\TestCase;
+use OmniCargo\Aftership\Laravel\DTO\CourierData;
+use OmniCargo\Aftership\Laravel\DTO\DeliveryEstimateData;
+use OmniCargo\Aftership\Laravel\DTO\TrackingCollection;
+use OmniCargo\Aftership\Laravel\DTO\TrackingData;
+use OmniCargo\Aftership\Laravel\Facades\AfterShip;
+use OmniCargo\Aftership\Laravel\Services\CourierService;
+use OmniCargo\Aftership\Laravel\Services\DeliveryEstimateService;
+use OmniCargo\Aftership\Laravel\Services\TrackingService;
+use OmniCargo\Aftership\Laravel\Tests\TestCase;
 
 final class FacadeTest extends TestCase
 {

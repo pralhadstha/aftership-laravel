@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace AfterShip\Tests;
+namespace OmniCargo\Aftership\Laravel\Tests;
 
-use AfterShip\AfterShipServiceProvider;
+use OmniCargo\Aftership\Laravel\AfterShipServiceProvider;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
 abstract class TestCase extends OrchestraTestCase
@@ -27,7 +27,7 @@ abstract class TestCase extends OrchestraTestCase
     protected function getPackageAliases($app): array
     {
         return [
-            'AfterShip' => \AfterShip\Facades\AfterShip::class,
+            'AfterShip' => \OmniCargo\Aftership\Laravel\Facades\AfterShip::class,
         ];
     }
 

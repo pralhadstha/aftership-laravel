@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace AfterShip\Tests\Unit\Services;
+namespace OmniCargo\Aftership\Laravel\Tests\Unit\Services;
 
-use AfterShip\Contracts\DriverInterface;
-use AfterShip\DTO\DeliveryEstimateData;
-use AfterShip\Services\DeliveryEstimateService;
-use AfterShip\Support\ResponseMapper;
+use OmniCargo\Aftership\Laravel\Contracts\DriverInterface;
+use OmniCargo\Aftership\Laravel\DTO\DeliveryEstimateData;
+use OmniCargo\Aftership\Laravel\Services\DeliveryEstimateService;
+use OmniCargo\Aftership\Laravel\Support\ResponseMapper;
 use PHPUnit\Framework\TestCase;
 
 final class DeliveryEstimateServiceTest extends TestCase

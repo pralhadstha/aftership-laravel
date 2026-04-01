@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace AfterShip\Webhooks;
+namespace OmniCargo\Aftership\Laravel\Webhooks;
 
-use AfterShip\Exceptions\AfterShipException;
+use OmniCargo\Aftership\Laravel\Exceptions\AfterShipException;
 
 final class WebhookHandler
 {

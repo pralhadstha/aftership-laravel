@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace AfterShip\Tests\Feature;
+namespace OmniCargo\Aftership\Laravel\Tests\Feature;
 
-use AfterShip\AfterShipManager;
-use AfterShip\Client\AfterShipClient;
-use AfterShip\Contracts\ClientInterface;
-use AfterShip\Contracts\DriverInterface;
-use AfterShip\Drivers\FakeDriver;
-use AfterShip\Tests\TestCase;
-use AfterShip\Webhooks\WebhookHandler;
+use OmniCargo\Aftership\Laravel\AfterShipManager;
+use OmniCargo\Aftership\Laravel\Client\AfterShipClient;
+use OmniCargo\Aftership\Laravel\Contracts\ClientInterface;
+use OmniCargo\Aftership\Laravel\Contracts\DriverInterface;
+use OmniCargo\Aftership\Laravel\Drivers\FakeDriver;
+use OmniCargo\Aftership\Laravel\Tests\TestCase;
+use OmniCargo\Aftership\Laravel\Webhooks\WebhookHandler;
 
 final class ServiceProviderTest extends TestCase
 {

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace AfterShip\Tests\Unit\Client;
+namespace OmniCargo\Aftership\Laravel\Tests\Unit\Client;
 
-use AfterShip\Client\AfterShipClient;
-use AfterShip\Contracts\DriverInterface;
-use AfterShip\Services\CourierService;
-use AfterShip\Services\DeliveryEstimateService;
-use AfterShip\Services\TrackingService;
+use OmniCargo\Aftership\Laravel\Client\AfterShipClient;
+use OmniCargo\Aftership\Laravel\Contracts\DriverInterface;
+use OmniCargo\Aftership\Laravel\Services\CourierService;
+use OmniCargo\Aftership\Laravel\Services\DeliveryEstimateService;
+use OmniCargo\Aftership\Laravel\Services\TrackingService;
 use PHPUnit\Framework\TestCase;
 
 final class AfterShipClientTest extends TestCase

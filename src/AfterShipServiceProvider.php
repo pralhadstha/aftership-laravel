@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace AfterShip;
+namespace OmniCargo\Aftership\Laravel;
 
-use AfterShip\Client\AfterShipClient;
-use AfterShip\Console\InstallCommand;
-use AfterShip\Contracts\ClientInterface;
-use AfterShip\Contracts\DriverInterface;
-use AfterShip\Webhooks\WebhookHandler;
+use OmniCargo\Aftership\Laravel\Client\AfterShipClient;
+use OmniCargo\Aftership\Laravel\Console\InstallCommand;
+use OmniCargo\Aftership\Laravel\Contracts\ClientInterface;
+use OmniCargo\Aftership\Laravel\Contracts\DriverInterface;
+use OmniCargo\Aftership\Laravel\Webhooks\WebhookHandler;
 use Illuminate\Http\Client\Factory as HttpFactory;
 use Illuminate\Support\ServiceProvider;
 

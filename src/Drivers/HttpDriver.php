@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace AfterShip\Drivers;
+namespace OmniCargo\Aftership\Laravel\Drivers;
 
-use AfterShip\Contracts\DriverInterface;
-use AfterShip\Support\ExceptionMapper;
+use OmniCargo\Aftership\Laravel\Contracts\DriverInterface;
+use OmniCargo\Aftership\Laravel\Support\ExceptionMapper;
 use Illuminate\Http\Client\Factory as HttpFactory;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Http\Client\Response;

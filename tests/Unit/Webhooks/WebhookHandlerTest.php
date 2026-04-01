@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace AfterShip\Tests\Unit\Webhooks;
+namespace OmniCargo\Aftership\Laravel\Tests\Unit\Webhooks;
 
-use AfterShip\Exceptions\AfterShipException;
-use AfterShip\Webhooks\WebhookHandler;
+use OmniCargo\Aftership\Laravel\Exceptions\AfterShipException;
+use OmniCargo\Aftership\Laravel\Webhooks\WebhookHandler;
 use PHPUnit\Framework\TestCase;
 
 final class WebhookHandlerTest extends TestCase

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace AfterShip\Support;
+namespace OmniCargo\Aftership\Laravel\Support;
 
-use AfterShip\Exceptions\AfterShipException;
-use AfterShip\Exceptions\ApiException;
-use AfterShip\Exceptions\AuthenticationException;
-use AfterShip\Exceptions\RateLimitException;
+use OmniCargo\Aftership\Laravel\Exceptions\AfterShipException;
+use OmniCargo\Aftership\Laravel\Exceptions\ApiException;
+use OmniCargo\Aftership\Laravel\Exceptions\AuthenticationException;
+use OmniCargo\Aftership\Laravel\Exceptions\RateLimitException;
 use Tracking\Exception\AfterShipError;
 
 final class ExceptionMapper

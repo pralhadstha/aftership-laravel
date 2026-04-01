@@ -75,7 +75,7 @@ The `http` driver works out of the box with no extra dependencies.
 ### Facade
 
 ```php
-use AfterShip\Facades\AfterShip;
+use OmniCargo\Aftership\Laravel\Facades\AfterShip;
 
 // Create a tracking
 $tracking = AfterShip::tracking()->create([
@@ -130,7 +130,7 @@ $estimate = AfterShip::deliveryEstimate()->estimate([
 ### Dependency Injection
 
 ```php
-use AfterShip\Client\AfterShipClient;
+use OmniCargo\Aftership\Laravel\Client\AfterShipClient;
 
 class ShipmentController extends Controller
 {
@@ -150,7 +150,7 @@ class ShipmentController extends Controller
 ### Webhooks
 
 ```php
-use AfterShip\Webhooks\WebhookHandler;
+use OmniCargo\Aftership\Laravel\Webhooks\WebhookHandler;
 
 class AfterShipWebhookController extends Controller
 {
@@ -205,9 +205,9 @@ $tracking->toArray();       // array representation
 The package throws specific exceptions:
 
 ```php
-use AfterShip\Exceptions\AuthenticationException;
-use AfterShip\Exceptions\RateLimitException;
-use AfterShip\Exceptions\ApiException;
+use OmniCargo\Aftership\Laravel\Exceptions\AuthenticationException;
+use OmniCargo\Aftership\Laravel\Exceptions\RateLimitException;
+use OmniCargo\Aftership\Laravel\Exceptions\ApiException;
 
 try {
     $tracking = AfterShip::tracking()->get('id');
@@ -228,8 +228,8 @@ try {
 Use the `FakeDriver` for testing without making API calls:
 
 ```php
-use AfterShip\AfterShipManager;
-use AfterShip\Contracts\ClientInterface;
+use OmniCargo\Aftership\Laravel\AfterShipManager;
+use OmniCargo\Aftership\Laravel\Contracts\ClientInterface;
 
 // In your test
 $this->app['config']->set('aftership.driver', 'fake');

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace AfterShip\Tests\Unit\Drivers;
+namespace OmniCargo\Aftership\Laravel\Tests\Unit\Drivers;
 
-use AfterShip\Drivers\FakeDriver;
+use OmniCargo\Aftership\Laravel\Drivers\FakeDriver;
 use PHPUnit\Framework\TestCase;
 
 final class FakeDriverTest extends TestCase

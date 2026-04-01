@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace AfterShip\Tests\Unit\Drivers;
+namespace OmniCargo\Aftership\Laravel\Tests\Unit\Drivers;
 
-use AfterShip\Drivers\SdkDriver;
-use AfterShip\Exceptions\ApiException;
+use OmniCargo\Aftership\Laravel\Drivers\SdkDriver;
+use OmniCargo\Aftership\Laravel\Exceptions\ApiException;
 use PHPUnit\Framework\TestCase;
 use Tracking\API\Courier as CourierApi;
 use Tracking\API\EstimatedDeliveryDate as EstimatedDeliveryDateApi;

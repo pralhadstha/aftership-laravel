@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace AfterShip\Tests\Unit\Services;
+namespace OmniCargo\Aftership\Laravel\Tests\Unit\Services;
 
-use AfterShip\Contracts\DriverInterface;
-use AfterShip\DTO\CourierData;
-use AfterShip\Services\CourierService;
-use AfterShip\Support\ResponseMapper;
+use OmniCargo\Aftership\Laravel\Contracts\DriverInterface;
+use OmniCargo\Aftership\Laravel\DTO\CourierData;
+use OmniCargo\Aftership\Laravel\Services\CourierService;
+use OmniCargo\Aftership\Laravel\Support\ResponseMapper;
 use PHPUnit\Framework\TestCase;
 
 final class CourierServiceTest extends TestCase

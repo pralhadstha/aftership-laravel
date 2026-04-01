@@ -36,21 +36,21 @@
     },
     "autoload": {
         "psr-4": {
-            "AfterShip\\": "src/"
+            "OmniCargo\\Aftership\\Laravel\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "AfterShip\\Tests\\": "tests/"
+            "OmniCargo\\Aftership\\Laravel\\Tests\\": "tests/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "AfterShip\\AfterShipServiceProvider"
+                "OmniCargo\\Aftership\\Laravel\\AfterShipServiceProvider"
             ],
             "aliases": {
-                "AfterShip": "AfterShip\\Facades\\AfterShip"
+                "AfterShip": "OmniCargo\\Aftership\\Laravel\\Facades\\AfterShip"
             }
         }
     },

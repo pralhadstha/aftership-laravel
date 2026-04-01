@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace AfterShip;
+namespace OmniCargo\Aftership\Laravel;
 
-use AfterShip\Client\AfterShipClient;
-use AfterShip\Contracts\ClientInterface;
-use AfterShip\Contracts\DriverInterface;
-use AfterShip\Drivers\FakeDriver;
-use AfterShip\Drivers\HttpDriver;
-use AfterShip\Drivers\SdkDriver;
-use AfterShip\Exceptions\InvalidConfigurationException;
+use OmniCargo\Aftership\Laravel\Client\AfterShipClient;
+use OmniCargo\Aftership\Laravel\Contracts\ClientInterface;
+use OmniCargo\Aftership\Laravel\Contracts\DriverInterface;
+use OmniCargo\Aftership\Laravel\Drivers\FakeDriver;
+use OmniCargo\Aftership\Laravel\Drivers\HttpDriver;
+use OmniCargo\Aftership\Laravel\Drivers\SdkDriver;
+use OmniCargo\Aftership\Laravel\Exceptions\InvalidConfigurationException;
 use Illuminate\Http\Client\Factory as HttpFactory;
 
 final class AfterShipManager

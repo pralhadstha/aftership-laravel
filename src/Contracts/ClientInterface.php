@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace AfterShip\Contracts;
+namespace OmniCargo\Aftership\Laravel\Contracts;
 
-use AfterShip\Services\TrackingService;
-use AfterShip\Services\CourierService;
-use AfterShip\Services\DeliveryEstimateService;
+use OmniCargo\Aftership\Laravel\Services\TrackingService;
+use OmniCargo\Aftership\Laravel\Services\CourierService;
+use OmniCargo\Aftership\Laravel\Services\DeliveryEstimateService;
 
 interface ClientInterface
 {

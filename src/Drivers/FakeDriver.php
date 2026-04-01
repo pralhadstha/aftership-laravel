@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace AfterShip\Drivers;
+namespace OmniCargo\Aftership\Laravel\Drivers;
 
-use AfterShip\Contracts\DriverInterface;
+use OmniCargo\Aftership\Laravel\Contracts\DriverInterface;
 
 final class FakeDriver implements DriverInterface
 {

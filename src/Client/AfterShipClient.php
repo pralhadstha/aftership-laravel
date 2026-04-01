@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace AfterShip\Client;
+namespace OmniCargo\Aftership\Laravel\Client;
 
-use AfterShip\Contracts\ClientInterface;
-use AfterShip\Contracts\DriverInterface;
-use AfterShip\Services\CourierService;
-use AfterShip\Services\DeliveryEstimateService;
-use AfterShip\Services\TrackingService;
-use AfterShip\Support\ResponseMapper;
+use OmniCargo\Aftership\Laravel\Contracts\ClientInterface;
+use OmniCargo\Aftership\Laravel\Contracts\DriverInterface;
+use OmniCargo\Aftership\Laravel\Services\CourierService;
+use OmniCargo\Aftership\Laravel\Services\DeliveryEstimateService;
+use OmniCargo\Aftership\Laravel\Services\TrackingService;
+use OmniCargo\Aftership\Laravel\Support\ResponseMapper;
 
 final class AfterShipClient implements ClientInterface
 {

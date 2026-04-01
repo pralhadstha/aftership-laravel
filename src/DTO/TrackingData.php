@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AfterShip\DTO;
+namespace OmniCargo\Aftership\Laravel\DTO;
 
 final class TrackingData
 {

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace AfterShip\Services;
+namespace OmniCargo\Aftership\Laravel\Services;
 
-use AfterShip\Contracts\DriverInterface;
-use AfterShip\DTO\TrackingCollection;
-use AfterShip\DTO\TrackingData;
-use AfterShip\Support\ResponseMapper;
+use OmniCargo\Aftership\Laravel\Contracts\DriverInterface;
+use OmniCargo\Aftership\Laravel\DTO\TrackingCollection;
+use OmniCargo\Aftership\Laravel\DTO\TrackingData;
+use OmniCargo\Aftership\Laravel\Support\ResponseMapper;
 
 final class TrackingService
 {

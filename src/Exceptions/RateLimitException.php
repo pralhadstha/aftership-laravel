@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AfterShip\Exceptions;
+namespace OmniCargo\Aftership\Laravel\Exceptions;
 
 class RateLimitException extends AfterShipException
 {

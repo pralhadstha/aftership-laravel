@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace AfterShip\Tests\Unit\DTO;
+namespace OmniCargo\Aftership\Laravel\Tests\Unit\DTO;
 
-use AfterShip\DTO\TrackingCollection;
-use AfterShip\DTO\TrackingData;
+use OmniCargo\Aftership\Laravel\DTO\TrackingCollection;
+use OmniCargo\Aftership\Laravel\DTO\TrackingData;
 use PHPUnit\Framework\TestCase;
 
 final class TrackingCollectionTest extends TestCase

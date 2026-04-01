@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace AfterShip\Facades;
+namespace OmniCargo\Aftership\Laravel\Facades;
 
-use AfterShip\Contracts\ClientInterface;
-use AfterShip\Contracts\DriverInterface;
-use AfterShip\Services\CourierService;
-use AfterShip\Services\DeliveryEstimateService;
-use AfterShip\Services\TrackingService;
+use OmniCargo\Aftership\Laravel\Contracts\ClientInterface;
+use OmniCargo\Aftership\Laravel\Contracts\DriverInterface;
+use OmniCargo\Aftership\Laravel\Services\CourierService;
+use OmniCargo\Aftership\Laravel\Services\DeliveryEstimateService;
+use OmniCargo\Aftership\Laravel\Services\TrackingService;
 use Illuminate\Support\Facades\Facade;
 
 /**
@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static DeliveryEstimateService deliveryEstimate()
  * @method static DriverInterface driver()
  *
- * @see \AfterShip\Client\AfterShipClient
+ * @see \OmniCargo\Aftership\Laravel\Client\AfterShipClient
  */
 final class AfterShip extends Facade
 {

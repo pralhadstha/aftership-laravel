@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace AfterShip\Tests\Unit\DTO;
+namespace OmniCargo\Aftership\Laravel\Tests\Unit\DTO;
 
-use AfterShip\DTO\DeliveryEstimateData;
+use OmniCargo\Aftership\Laravel\DTO\DeliveryEstimateData;
 use PHPUnit\Framework\TestCase;
 
 final class DeliveryEstimateDataTest extends TestCase

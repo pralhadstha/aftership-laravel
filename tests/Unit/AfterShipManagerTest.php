@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace AfterShip\Tests\Unit;
+namespace OmniCargo\Aftership\Laravel\Tests\Unit;
 
-use AfterShip\AfterShipManager;
-use AfterShip\Client\AfterShipClient;
-use AfterShip\Contracts\ClientInterface;
-use AfterShip\Drivers\FakeDriver;
-use AfterShip\Drivers\SdkDriver;
-use AfterShip\Exceptions\InvalidConfigurationException;
+use OmniCargo\Aftership\Laravel\AfterShipManager;
+use OmniCargo\Aftership\Laravel\Client\AfterShipClient;
+use OmniCargo\Aftership\Laravel\Contracts\ClientInterface;
+use OmniCargo\Aftership\Laravel\Drivers\FakeDriver;
+use OmniCargo\Aftership\Laravel\Drivers\SdkDriver;
+use OmniCargo\Aftership\Laravel\Exceptions\InvalidConfigurationException;
 use PHPUnit\Framework\TestCase;
 
 final class AfterShipManagerTest extends TestCase

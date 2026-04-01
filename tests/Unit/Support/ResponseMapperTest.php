@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace AfterShip\Tests\Unit\Support;
+namespace OmniCargo\Aftership\Laravel\Tests\Unit\Support;
 
-use AfterShip\DTO\CourierData;
-use AfterShip\DTO\DeliveryEstimateData;
-use AfterShip\DTO\TrackingCollection;
-use AfterShip\DTO\TrackingData;
-use AfterShip\Support\ResponseMapper;
+use OmniCargo\Aftership\Laravel\DTO\CourierData;
+use OmniCargo\Aftership\Laravel\DTO\DeliveryEstimateData;
+use OmniCargo\Aftership\Laravel\DTO\TrackingCollection;
+use OmniCargo\Aftership\Laravel\DTO\TrackingData;
+use OmniCargo\Aftership\Laravel\Support\ResponseMapper;
 use PHPUnit\Framework\TestCase;
 
 final class ResponseMapperTest extends TestCase

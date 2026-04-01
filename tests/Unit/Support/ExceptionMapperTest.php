@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace AfterShip\Tests\Unit\Support;
+namespace OmniCargo\Aftership\Laravel\Tests\Unit\Support;
 
-use AfterShip\Exceptions\ApiException;
-use AfterShip\Exceptions\AuthenticationException;
-use AfterShip\Exceptions\RateLimitException;
-use AfterShip\Support\ExceptionMapper;
+use OmniCargo\Aftership\Laravel\Exceptions\ApiException;
+use OmniCargo\Aftership\Laravel\Exceptions\AuthenticationException;
+use OmniCargo\Aftership\Laravel\Exceptions\RateLimitException;
+use OmniCargo\Aftership\Laravel\Support\ExceptionMapper;
 use PHPUnit\Framework\TestCase;
 use Tracking\Exception\AfterShipError;
 

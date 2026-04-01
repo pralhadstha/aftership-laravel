@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AfterShip\Console;
+namespace OmniCargo\Aftership\Laravel\Console;
 
 use Illuminate\Console\Command;
 use Symfony\Component\Process\Process;
