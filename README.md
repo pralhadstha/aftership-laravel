@@ -6,7 +6,9 @@
 [![PHP Version](https://img.shields.io/packagist/php-v/pralhadstha/aftership-laravel.svg?style=flat-square)](https://packagist.org/packages/pralhadstha/aftership-laravel)
 [![Laravel](https://img.shields.io/badge/Laravel-10%20|%2011%20|%2012-FF2D20?style=flat-square&logo=laravel&logoColor=white)](https://laravel.com)
 
-A modern, production-ready Laravel package for the [AfterShip Tracking API](https://www.aftership.com/docs/tracking). Track shipments across 1,200+ carriers worldwide with a clean driver-based architecture, immutable DTOs, webhook verification, and full test support.
+A modern, production-ready Laravel package for integrating with the [AfterShip Tracking API](https://www.aftership.com/docs/tracking) to track shipments, parcels, and deliveries across 1,200+ carriers worldwide. Supports DHL, FedEx, UPS, USPS, and more with a clean driver-based architecture, immutable DTOs, webhook verification, and full test support.
+
+If you're building an e-commerce platform, order management system, or logistics dashboard in Laravel and need shipment tracking, courier detection, or delivery estimates from AfterShip, this package provides a clean, testable integration out of the box.
 
 ## Why This Package?
 
