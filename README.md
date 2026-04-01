@@ -1,6 +1,21 @@
 # AfterShip Laravel SDK
 
-A modern Laravel wrapper for the [AfterShip Tracking API](https://www.aftership.com/docs/tracking) with driver support, DTOs, and webhook handling.
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/pralhadstha/aftership-laravel.svg?style=flat-square)](https://packagist.org/packages/pralhadstha/aftership-laravel)
+[![Total Downloads](https://img.shields.io/packagist/dt/pralhadstha/aftership-laravel.svg?style=flat-square)](https://packagist.org/packages/pralhadstha/aftership-laravel)
+[![License](https://img.shields.io/packagist/l/pralhadstha/aftership-laravel.svg?style=flat-square)](LICENSE)
+[![PHP Version](https://img.shields.io/packagist/php-v/pralhadstha/aftership-laravel.svg?style=flat-square)](https://packagist.org/packages/pralhadstha/aftership-laravel)
+[![Laravel](https://img.shields.io/badge/Laravel-10%20|%2011%20|%2012-FF2D20?style=flat-square&logo=laravel&logoColor=white)](https://laravel.com)
+
+A modern, production-ready Laravel package for the [AfterShip Tracking API](https://www.aftership.com/docs/tracking). Track shipments across 1,200+ carriers worldwide with a clean driver-based architecture, immutable DTOs, webhook verification, and full test support.
+
+## Why This Package?
+
+- **Driver Pattern** — Choose between the official AfterShip SDK or Laravel's HTTP client. Swap drivers without changing your code.
+- **Immutable DTOs** — All API responses are mapped to typed, immutable Data Transfer Objects.
+- **Webhook Support** — Built-in HMAC signature verification for secure webhook handling.
+- **Testable** — Includes a `FakeDriver` for testing without API calls. No mocking needed.
+- **Interactive Installer** — `php artisan aftership:install` guides you through setup with Laravel Prompts.
+- **Laravel Auto-Discovery** — Zero-config service provider and facade registration.
 
 ## Requirements
 
@@ -72,7 +87,7 @@ The `http` driver works out of the box with no extra dependencies.
 
 ## Usage
 
-### Facade
+### Tracking Shipments
 
 ```php
 use OmniCargo\Aftership\Laravel\Facades\AfterShip;
@@ -107,7 +122,7 @@ AfterShip::tracking()->markCompleted('tracking-id', 'DELIVERED');
 // List all couriers
 $couriers = AfterShip::courier()->list();
 
-// Detect courier
+// Detect courier by tracking number
 $detected = AfterShip::courier()->detect([
     'tracking_number' => '1234567890',
 ]);
@@ -202,7 +217,7 @@ $tracking->toArray();       // array representation
 
 ### Error Handling
 
-The package throws specific exceptions:
+The package throws specific exceptions for different API error scenarios:
 
 ```php
 use OmniCargo\Aftership\Laravel\Exceptions\AuthenticationException;
@@ -225,7 +240,7 @@ try {
 
 ### Testing
 
-Use the `FakeDriver` for testing without making API calls:
+Use the built-in `FakeDriver` for testing without making real API calls:
 
 ```php
 use OmniCargo\Aftership\Laravel\AfterShipManager;
@@ -252,6 +267,18 @@ composer install
 vendor/bin/phpunit
 ```
 
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## Security
+
+If you discover any security-related issues, please report them via [GitHub Security Advisories](https://github.com/pralhadstha/aftership-laravel/security/advisories) instead of using the issue tracker.
+
+## Credits
+
+- [Pralhad Kumar Shrestha](https://github.com/pralhadstha)
+
 ## License
 
-MIT
+This package is open-sourced software licensed under the [MIT license](LICENSE).
